@@ -1,6 +1,6 @@
 import { RECEIVE_QUESTIONS } from "../Actions/ActionTypes";
 
-const initialSate = { questions: [] };
+const initialSate = {};
 
 export const questionReducer = (state = initialSate, action) => {
   switch (action.type) {
@@ -9,7 +9,9 @@ export const questionReducer = (state = initialSate, action) => {
         ...state,
         ...action.payload,
       };
-    default:
-      return initialSate;
+      break;
+    default: {
+      return state;
+    }
   }
 };

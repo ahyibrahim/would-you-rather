@@ -2,32 +2,16 @@ import logo from "./logo.svg";
 import "./App.css";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { handelDataInit } from "./Store/Actions/SharedActions";
+import { handleDataInit } from "./Store/Actions/SharedActions";
+import LoginView from "./Views/LoginView";
 
 function App(props) {
   useEffect(() => {
     const { dispatch } = props;
-    handelDataInit(dispatch);
+    handleDataInit(dispatch);
   }, []);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <LoginView />;
 }
 
 export default connect()(App);

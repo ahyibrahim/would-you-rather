@@ -1,6 +1,6 @@
-import { RECEIVE_USERS } from "../Actions/ActionTypes";
+import { GET_USERNAMES, RECEIVE_USERS } from "../Actions/ActionTypes";
 
-const initialSate = { users: [] };
+const initialSate = {};
 
 export const userReducer = (state = initialSate, action) => {
   switch (action.type) {
@@ -9,7 +9,9 @@ export const userReducer = (state = initialSate, action) => {
         ...state,
         ...action.payload,
       };
-    default:
-      return initialSate;
+      break;
+    default: {
+      return state;
+    }
   }
 };

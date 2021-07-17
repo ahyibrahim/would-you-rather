@@ -1,8 +1,8 @@
 const logger = (store) => (next) => (action) => {
   console.group(action.type);
-  console.log(`Dispatched Action: ${action}`);
+  console.log(`Dispatched Action: ${JSON.stringify(action)}`);
   const returnValue = next(action);
-  console.log(`New State ${store.getState()}`);
+  console.log(`New State ${JSON.stringify(store.getState())}`);
   console.groupEnd();
   return returnValue;
 };
