@@ -2,7 +2,7 @@ import { createStore, combineReducers } from "redux";
 import { authedUserReducer } from "./Reducers/AuthedUserReducer";
 import { questionReducer } from "./Reducers/QuestionsReducer";
 import { userReducer } from "./Reducers/UsersReducer";
-import { middleware } from "./Middleware";
+import middleware from "./Middleware";
 
 const rootReducer = combineReducers({
   userReducer,

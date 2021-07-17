@@ -1,9 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { handelDataInit } from "./Store/Actions/SharedActions";
 
-function App() {
-  handelDataInit();
+function App(props) {
+  useEffect(() => {
+    const { dispatch } = props;
+    handelDataInit(dispatch);
+  }, []);
 
   return (
     <div className="App">
@@ -25,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);
