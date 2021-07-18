@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { Layout, Menu, Row, Col, Avatar, Typography, Space } from "antd";
 import logo from "./logo.svg";
 import "./NavBar.css";
-import _default from "antd/lib/checkbox/Group";
-import { setAuthedUser } from "../../Store/Actions/AuthedUserActions";
+// import _default from "antd/lib/checkbox/Group";
+// import { setAuthedUser } from "../../Store/Actions/AuthedUserActions";
 
 const { Header } = Layout;
 const { Text } = Typography;

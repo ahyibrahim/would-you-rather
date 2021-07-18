@@ -1,31 +1,35 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
-import { handleDataInit } from "./Store/Actions/SharedActions";
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
+import {Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
+import {handleInitQuestions, handleInitUsers} from "./Store/Actions/SharedActions";
 import LoginView from "./Views/LoginView";
 import HomePage from "./Views/HomePage";
+import {cleanQuestions} from "./Store/Actions/QuestionActions";
+import {setIsLoading} from "./Store/Actions/WidgetsActions";
 
 function App(props) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {isAuthed, dispatch} = props;
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      const { dispatch } = props;
-      handleDataInit(dispatch);
-      setIsLoggedIn(true);
-      console.log(`App Props ${JSON.stringify(props)}`);
-    } else {
-      console.log("Skipped Init");
-    }
+    dispatch(setIsLoading())
+    dispatch(handleInitUsers())
   }, []);
+
+  useEffect(() => {
+    if (isAuthed) {
+      dispatch(handleInitQuestions())
+    } else {
+      dispatch(cleanQuestions())
+    }
+  }, [isAuthed]);
 
   return (
     <BrowserRouter>
-      {!props.isAuthed ? <Redirect to="/login" /> : <Redirect to="/" />}
+      {!props.isAuthed ? <Redirect to="/login"/> : <Redirect to="/"/>}
       <Switch>
-        <Route path="/login" component={LoginView} />
-        <Route path="/" component={HomePage} />
+        <Route path="/login" component={LoginView}/>
+        <Route path="/" component={HomePage}/>
       </Switch>
     </BrowserRouter>
     //   <BrowserRouter>
@@ -37,9 +41,11 @@ function App(props) {
   );
 }
 
-function mapStateToProps({ authedUserReducer }) {
-  console.log(`UthedUser in App: ${JSON.stringify(authedUserReducer)}`);
-  return authedUserReducer;
+function mapStateToProps({authedUserReducer}) {
+  console.log(`AuthedUser in App: ${JSON.stringify(authedUserReducer)}`);
+  return {
+    ...authedUserReducer
+  };
 }
 
 export default connect(mapStateToProps)(App);

@@ -3,10 +3,10 @@ import * as Actions from "../Actions/ActionTypes";
 const logger = (store) => (next) => (action) => {
   console.group(action.type);
   switch (action.type) {
-    case Actions.RECEIVE_USERS:
+    case Actions.RECEIVE_USERS_SUCCESS:
       console.log(`User IDs: ${Object.keys(action.payload)}`);
       break;
-    case Actions.RECEIVE_QUESTIONS:
+    case Actions.RECEIVE_QUESTIONS_SUCCESS:
       console.log(`Question IDs: ${Object.keys(action.payload)}`);
       break;
     case Actions.SET_AUTHED_USER:
