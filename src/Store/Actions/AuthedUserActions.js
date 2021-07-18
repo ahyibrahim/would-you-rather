@@ -10,6 +10,5 @@ export function setAuthedUser(userID = undefined) {
 export function unauth() {
   return {
     type: UNAUTH,
-    payload: null,
   };
 }

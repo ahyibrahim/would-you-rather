@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useCallback } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Layout, Menu, Row, Col, Avatar, Typography, Space } from "antd";
 import logo from "./logo.svg";
 import "./NavBar.css";
+import { handleLogout } from "../../Store/Actions/SharedActions";
 // import _default from "antd/lib/checkbox/Group";
 // import { setAuthedUser } from "../../Store/Actions/AuthedUserActions";
 
@@ -11,11 +12,15 @@ const { Header } = Layout;
 const { Text } = Typography;
 
 function NavBar(props) {
-  useEffect(() => {
-    const { dispatch } = props;
-    //dispatch(setAuthedUser("sarahedo"));
+  const history = useHistory();
+  const { dispatch } = props;
+  const logout = useCallback(() => {
+    dispatch(
+      handleLogout(() => {
+        history.replace("/login");
+      })
+    );
   }, []);
-
   return (
     <Header className="header">
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -36,7 +41,7 @@ function NavBar(props) {
                 Hello, {props.authedUserName}
               </Text>
               <Avatar src={props.authedUserAvatar} />
-              <Link to="/">Logout</Link> //TODO
+              <a onClick={logout}>Logout</a>
             </Space>
           ) : (
             <Typography style={{ color: "#FE6D6D" }}>
