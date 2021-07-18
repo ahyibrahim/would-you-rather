@@ -7,6 +7,6 @@ export const authedUserReducer = (state = initialSate, action) => {
     case SET_AUTHED_USER:
       return { authedUser: action.payload };
     default:
-      return initialSate;
+      return state;
   }
 };

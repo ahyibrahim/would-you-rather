@@ -1,4 +1,4 @@
-import { GET_USERNAMES, RECEIVE_USERS } from "../Actions/ActionTypes";
+import { RECEIVE_USERS } from "../Actions/ActionTypes";
 
 const initialSate = {};
 
@@ -9,7 +9,6 @@ export const userReducer = (state = initialSate, action) => {
         ...state,
         ...action.payload,
       };
-      break;
     default: {
       return state;
     }

@@ -9,7 +9,6 @@ export const questionReducer = (state = initialSate, action) => {
         ...state,
         ...action.payload,
       };
-      break;
     default: {
       return state;
     }
