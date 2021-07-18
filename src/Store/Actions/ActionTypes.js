@@ -1,3 +1,4 @@
 export const RECEIVE_USERS = "RECIEVE_USERS";
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const SET_AUTHED_USER = "SET_AUTHED_USER";
+export const UNAUTH = "UNAUTH";

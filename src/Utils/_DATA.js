@@ -1,4 +1,15 @@
 let users = {
+  janedoe: {
+    id: "janedoe",
+    name: "Jane Doe",
+    avatarURL: "https://openclipart.org/image/800px/277089",
+    answers: {
+      xj352vofupe1dqz9emx13r: "optionOne",
+      vthrdm985a262al8qx3do: "optionTwo",
+      "6ni6ok3ym7mf1p33lnez": "optionTwo",
+    },
+    questions: ["6ni6ok3ym7mf1p33lnez", "xj352vofupe1dqz9emx13r"],
+  },
   sarahedo: {
     id: "sarahedo",
     name: "Sarah Edo",
@@ -20,17 +31,6 @@ let users = {
       xj352vofupe1dqz9emx13r: "optionTwo",
     },
     questions: ["loxhs1bqm25b708cmbf3g", "vthrdm985a262al8qx3do"],
-  },
-  janedoe: {
-    id: "janedoe",
-    name: "Jane Doe",
-    avatarURL: "https://openclipart.org/image/800px/277089",
-    answers: {
-      xj352vofupe1dqz9emx13r: "optionOne",
-      vthrdm985a262al8qx3do: "optionTwo",
-      "6ni6ok3ym7mf1p33lnez": "optionTwo",
-    },
-    questions: ["6ni6ok3ym7mf1p33lnez", "xj352vofupe1dqz9emx13r"],
   },
 };
 

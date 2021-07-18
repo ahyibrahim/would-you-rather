@@ -1,31 +1,44 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import { handleDataInit } from "./Store/Actions/SharedActions";
 import LoginView from "./Views/LoginView";
-import homePage from "./Views/HomePage";
+import HomePage from "./Views/HomePage";
 
 function App(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
-    const { dispatch } = props;
-    handleDataInit(dispatch);
-    console.log(`App Props ${JSON.stringify(props)}`);
+    if (!isLoggedIn) {
+      const { dispatch } = props;
+      handleDataInit(dispatch);
+      setIsLoggedIn(true);
+      console.log(`App Props ${JSON.stringify(props)}`);
+    } else {
+      console.log("Skipped Init");
+    }
   }, []);
 
   return (
     <BrowserRouter>
-      {!props.authedUser ? <Redirect to="/login" /> : <Redirect to="/" />}
+      {!props.isAuthed ? <Redirect to="/login" /> : <Redirect to="/" />}
       <Switch>
         <Route path="/login" component={LoginView} />
-        <Route path="/" component={homePage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
+    //   <BrowserRouter>
+    //     <Switch>
+    //       <Route path="/login" render={() => <LoginView />} />
+    //       <Route exact path="/" render={() => <HomePage />} />
+    //     </Switch>
+    //   </BrowserRouter>
   );
 }
 
 function mapStateToProps({ authedUserReducer }) {
-  //console.log(`UthedUser in App: ${JSON.stringify(authedUserReducer)}`);
+  console.log(`UthedUser in App: ${JSON.stringify(authedUserReducer)}`);
   return authedUserReducer;
 }
 

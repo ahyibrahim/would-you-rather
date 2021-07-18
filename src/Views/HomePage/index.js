@@ -1,11 +1,13 @@
 import React from "react";
+import NavBar from "../../Components/NavBar";
+import { Layout } from "antd";
 
-function homePage() {
+function HomePage() {
   return (
-    <div>
-      <h1>HomePage</h1>
-    </div>
+    <Layout>
+      <NavBar />
+    </Layout>
   );
 }
 
-export default homePage;
+export default HomePage;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./loginView.css";
 import logo from "./logo.svg";
 import { connect } from "react-redux";
