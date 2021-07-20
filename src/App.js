@@ -10,6 +10,9 @@ import LoginView from "./Views/LoginView";
 import HomePage from "./Views/HomePage";
 import { cleanQuestions } from "./Store/Actions/QuestionActions";
 import { setIsLoading } from "./Store/Actions/WidgetsActions";
+import question_view from "./Views/QuestionView";
+import NavBar from "./Components/NavBar";
+import ProtectedRoutes from "./Routes/ProtectedRoutes";
 
 function App(props) {
   const { isAuthed, dispatch } = props;
@@ -29,17 +32,26 @@ function App(props) {
 
   return (
     <BrowserRouter>
-      {!props.isAuthed ? <Redirect to="/login" /> : <Redirect to="/" />}
+      <NavBar />
+
       <Switch>
-        <Route path="/login" component={LoginView} />
-        <Route path="/" component={HomePage} />
+        {/* {!props.isAuthed ? <Redirect to="/login" /> : <Redirect to="/" />} */}
+
+        {props.isAuthed ? (
+          <ProtectedRoutes />
+        ) : (
+          <>
+            <Route path="/login" component={LoginView} />
+            <Redirect to="/login"></Redirect>
+          </>
+        )}
       </Switch>
     </BrowserRouter>
   );
 }
 
 function mapStateToProps({ authedUserReducer }) {
-  console.log(`AuthedUser in App: ${JSON.stringify(authedUserReducer)}`);
+  //console.log(`AuthedUser in App: ${JSON.stringify(authedUserReducer)}`);
   return {
     ...authedUserReducer,
   };

@@ -5,8 +5,6 @@ import { Layout, Menu, Row, Col, Avatar, Typography, Space } from "antd";
 import logo from "./logo.svg";
 import "./NavBar.css";
 import { handleLogout } from "../../Store/Actions/SharedActions";
-// import _default from "antd/lib/checkbox/Group";
-// import { setAuthedUser } from "../../Store/Actions/AuthedUserActions";
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -29,7 +27,9 @@ function NavBar(props) {
         </Col>
         <Col span={16}>
           <Menu theme="dark" mode="horizontal">
-            <Menu.Item key="home">Home</Menu.Item>
+            <Link to="/">
+              <Menu.Item key="home">Home</Menu.Item>
+            </Link>
             <Menu.Item key="add">New Question</Menu.Item>
             <Menu.Item key="boards">Leader Boards</Menu.Item>
           </Menu>
@@ -40,7 +40,10 @@ function NavBar(props) {
               <Text italic className="username">
                 Hello, {props.authedUserName}
               </Text>
-              <Avatar src={props.authedUserAvatar} />
+              <Avatar
+                src={props.authedUserAvatar}
+                style={{ backgroundColor: "#003653" }}
+              />
               <a onClick={logout}>Logout</a>
             </Space>
           ) : (
@@ -59,7 +62,7 @@ function mapStateToProps({ authedUserReducer, userReducer }) {
     const authedUser = Object.values(userReducer).filter(
       (user) => user.id === authedUserReducer.authedUserId
     )[0];
-    console.log(`Authed User in nav: ${JSON.stringify(authedUser)}`);
+    //console.log(`Authed User in nav: ${JSON.stringify(authedUser)}`);
     const authedUserName = authedUser.name;
     const authedUserAvatar = authedUser.avatarURL;
     return { authedUserName, authedUserAvatar, authed: true };

@@ -5,3 +5,16 @@
   padding: 24px;
   background: #fff;
 }
+
+.tabs-container {
+  border: rgb(0, 21, 41) solid;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  border-radius: 20px;
+}
+
+.card-list-container {
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+}
