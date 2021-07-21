@@ -1,4 +1,9 @@
-import { RECEIVE_USERS_SUCCESS, RECEIVE_USERS_FAIL } from "./ActionTypes";
+import {
+  RECEIVE_USERS_SUCCESS,
+  RECEIVE_USERS_FAIL,
+  RECEIVE_ANSWER_SUCCESS,
+  RECEIVE_ANSWER_FAIL,
+} from "./ActionTypes";
 
 export function receiveUsersSuccess(users) {
   return {
@@ -9,6 +14,19 @@ export function receiveUsersSuccess(users) {
 
 export function receiveUsersFail() {
   return {
-    type: RECEIVE_USERS_FAIL
+    type: RECEIVE_USERS_FAIL,
+  };
+}
+
+export function receiveAnswerSuccess(userId, questionId, answer) {
+  return {
+    type: RECEIVE_ANSWER_SUCCESS,
+    payload: { userId, questionId, answer },
+  };
+}
+
+export function receiveAnswerFail() {
+  return {
+    type: RECEIVE_ANSWER_FAIL,
   };
 }

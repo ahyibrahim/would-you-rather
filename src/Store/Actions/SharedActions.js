@@ -1,10 +1,21 @@
-import { receiveUsersFail, receiveUsersSuccess } from "./UserActions";
+import {
+  receiveUsersFail,
+  receiveUsersSuccess,
+  receiveAnswerSuccess,
+  receiveAnswerFail,
+} from "./UserActions";
 import {
   receiveQuestionsSuccess,
   receiveQuestionsFail,
+  receiveVoteSuccesss,
+  receiveVoteFail,
 } from "./QuestionActions";
 import { setIsNotLoading } from "./WidgetsActions";
-import { getInitialQuestions, getInitialUsers } from "../../Utils/api";
+import {
+  getInitialQuestions,
+  getInitialUsers,
+  saveQuestionAnswer,
+} from "../../Utils/api";
 import { unauth } from "./AuthedUserActions";
 
 export function handleLogout(onSuccess) {
@@ -47,6 +58,20 @@ export function handleInitQuestions() {
       .catch((err) => {
         console.log(err);
         dispatch(receiveQuestionsFail());
+      });
+  };
+}
+
+export function handleQuestionAnswered(userId, questionId, answer) {
+  return (dispatch) => {
+    saveQuestionAnswer(userId, questionId, answer)
+      .then((res) => {
+        dispatch(receiveVoteSuccesss(userId, questionId, answer));
+        dispatch(receiveAnswerSuccess(userId, questionId, answer));
+      })
+      .catch((err) => {
+        dispatch(receiveVoteFail());
+        dispatch(receiveAnswerFail());
       });
   };
 }

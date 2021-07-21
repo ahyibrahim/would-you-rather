@@ -23,7 +23,7 @@ function NavBar(props) {
     <Header className="header">
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col span={2}>
-          <img className="logo" src={logo} />
+          <img className="logo" alt="logo" src={logo} />
         </Col>
         <Col span={16}>
           <Menu theme="dark" mode="horizontal">
@@ -44,7 +44,7 @@ function NavBar(props) {
                 src={props.authedUserAvatar}
                 style={{ backgroundColor: "#003653" }}
               />
-              <a onClick={logout}>Logout</a>
+              <Typography.Link onClick={logout}>Logout</Typography.Link>
             </Space>
           ) : (
             <Typography style={{ color: "#FE6D6D" }}>

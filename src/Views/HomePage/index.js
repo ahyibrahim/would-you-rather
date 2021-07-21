@@ -1,9 +1,7 @@
 import React from "react";
-import NavBar from "../../Components/NavBar";
 import { connect } from "react-redux";
 import { Layout, Breadcrumb, Tabs, Row, Col } from "antd";
 import "./HomePage.css";
-import Question from "../../Components/Question";
 import ListOfQuestions from "../../Components/ListOfQuestions";
 
 const { Content, Footer } = Layout;

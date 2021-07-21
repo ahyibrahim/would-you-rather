@@ -2,10 +2,10 @@ import React from "react";
 import { DisconnectOutlined } from "@ant-design/icons";
 import { Layout, Row, Col, Typography, Space } from "antd";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 const { Title } = Typography;
 
-function Page_Not_Found({ location }) {
+function PageNotFound({ location }) {
   return (
     <Layout>
       <Content style={{ padding: "0 50px", height: "100vh" }}>
@@ -33,4 +33,4 @@ function Page_Not_Found({ location }) {
   );
 }
 
-export default Page_Not_Found;
+export default PageNotFound;

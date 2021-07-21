@@ -1,54 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import {
-  Card,
-  Button,
-  Row,
-  Col,
-  Avatar,
-  Typography,
-  Divider,
-  Space,
-  Radio,
-  Form,
-  Alert,
-} from "antd";
+import { Card, Row, Col, Avatar, Typography, Divider } from "antd";
 import "./question.css";
-import logo from "../../logo.svg";
+import QuestionContent from "../../Components/QuestionContent";
 
 function Question_View(props) {
-  const { Text, Title } = Typography;
+  const { Title } = Typography;
 
+  //Local State
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [currentQuestionAuthor, setCurrentQuestionAuthor] = useState({});
-  const { id } = useParams();
+
+  //Global State
   const { allUsers, allQuestions, authUser } = props;
+  const { id } = useParams();
+  const modId = id.replace(":", "");
 
   useEffect(() => {
     console.log(`$$$ Got ID ${id}`);
-    const modId = id.replace(":", "");
-    console.log(`$$$ Got ID ${modId}`);
     if (allQuestions[modId]) {
       const cQ = allQuestions[modId];
-      console.log(`$$$ Got cQ = ${JSON.stringify(cQ)}`);
-      const aId = cQ.author;
-      console.log(`$$$ got aId = ${aId}`);
-      const cA = allUsers[aId];
-      console.log(`$$$ Got cAu = ${JSON.stringify(cA)}`);
+      const cA = allUsers[cQ.author];
       setCurrentQuestion(cQ);
       setCurrentQuestionAuthor(cA);
+      console.log(`$$$ Auth User: ${JSON.stringify(authUser)}`);
+      console.log(
+        `&&& If Statement: ${JSON.stringify(
+          allUsers[authUser.authedUserId].answers[currentQuestion.id]
+        )}`
+      );
     }
   }, []);
-
-  const onFinish = (values) => {
-    if (values.answer) {
-      console.log("Success:", values.answer);
-    } else {
-      console.log("Fail");
-      alert("Please Select Answer");
-    }
-  };
 
   if (allQuestions[id.replace(":", "")]) {
     return (
@@ -86,43 +69,11 @@ function Question_View(props) {
                           <Title level={4}>Would You Rather</Title>
                         </Col>
                       </Row>
-                      <Form onFinish={onFinish}>
-                        <Form.Item name="answer">
-                          <Radio.Group>
-                            <Row justify="center">
-                              <Col span={16}>
-                                <Radio value={1}>
-                                  {currentQuestion.optionOne.text}
-                                </Radio>
-                              </Col>
-                              <Col span={13}>
-                                <Title level={5}>Or</Title>
-                              </Col>
-                              <Col span={16}>
-                                <Radio value={2}>
-                                  {currentQuestion.optionTwo.text}
-                                </Radio>
-                              </Col>
-                            </Row>
-                          </Radio.Group>
-                        </Form.Item>
-                        <Divider />
-                        <Row justify="center">
-                          <Col span={16}>
-                            <Form.Item>
-                              <Button
-                                type="primary"
-                                shape="round"
-                                style={{ width: "100%" }}
-                                htmlType="submit"
-                              >
-                                View Full
-                              </Button>
-                            </Form.Item>
-                          </Col>
-                        </Row>
-                        <Divider />
-                      </Form>
+                      <QuestionContent
+                        optionOne={currentQuestion.optionOne.text}
+                        optionTwo={currentQuestion.optionTwo.text}
+                        questionId={modId}
+                      />
                     </Col>
                   </Row>
                 </div>
@@ -145,11 +96,11 @@ function Question_View(props) {
   );
 }
 
-function mapStateToProps({ questionReducer, userReducer, authUserReducer }) {
+function mapStateToProps({ questionReducer, userReducer, authedUserReducer }) {
   return {
     allUsers: userReducer,
     allQuestions: questionReducer,
-    authUser: authUserReducer,
+    authUser: authedUserReducer,
   };
 }
 

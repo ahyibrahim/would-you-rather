@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Divider } from "antd";
+import { Row } from "antd";
 import Question from "../Question";
 
 function ListOfQuestions(props) {

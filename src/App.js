@@ -7,10 +7,8 @@ import {
   handleInitUsers,
 } from "./Store/Actions/SharedActions";
 import LoginView from "./Views/LoginView";
-import HomePage from "./Views/HomePage";
 import { cleanQuestions } from "./Store/Actions/QuestionActions";
 import { setIsLoading } from "./Store/Actions/WidgetsActions";
-import question_view from "./Views/QuestionView";
 import NavBar from "./Components/NavBar";
 import ProtectedRoutes from "./Routes/ProtectedRoutes";
 
@@ -33,10 +31,7 @@ function App(props) {
   return (
     <BrowserRouter>
       <NavBar />
-
       <Switch>
-        {/* {!props.isAuthed ? <Redirect to="/login" /> : <Redirect to="/" />} */}
-
         {props.isAuthed ? (
           <ProtectedRoutes />
         ) : (

@@ -1,16 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  Card,
-  Button,
-  Row,
-  Col,
-  Avatar,
-  Typography,
-  Divider,
-  Space,
-} from "antd";
+import { Card, Button, Row, Col, Avatar, Typography, Divider } from "antd";
 import "./question.css";
 
 function Question(props) {
