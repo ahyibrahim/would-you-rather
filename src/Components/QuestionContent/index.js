@@ -135,9 +135,6 @@ function mapStateToProps(
   { userReducer, questionReducer, authedUserReducer },
   { questionId }
 ) {
-  console.log(
-    `*** Authed User from MSTP: ${JSON.stringify(authedUserReducer)}`
-  );
   return {
     allUsers: userReducer,
     allQuestions: questionReducer,

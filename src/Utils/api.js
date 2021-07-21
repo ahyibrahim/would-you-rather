@@ -1,13 +1,10 @@
-import { _getUsers, _getQuestions, _saveQuestionAnswer } from "./_DATA";
-
-/*export function getInitialData() {
-  return Promise.all([_getUsers(), _getQuestions()]).then(
-    ([users, questions]) => ({
-      users,
-      questions,
-    })
-  );
-}*/
+import {
+  _getUsers,
+  _getQuestions,
+  _saveQuestionAnswer,
+  formatQuestion,
+  _saveQuestion,
+} from "./_DATA";
 
 export function getInitialUsers() {
   return _getUsers();
@@ -19,4 +16,12 @@ export function getInitialQuestions() {
 
 export function saveQuestionAnswer(authedUser, qid, answer) {
   return _saveQuestionAnswer({ authedUser, qid, answer });
+}
+
+export function saveQuestion(optionOneText, optionTwoText, author) {
+  return _saveQuestion({
+    optionOneText: optionOneText,
+    optionTwoText: optionTwoText,
+    author: author,
+  });
 }

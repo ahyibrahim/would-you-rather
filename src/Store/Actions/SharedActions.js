@@ -3,18 +3,23 @@ import {
   receiveUsersSuccess,
   receiveAnswerSuccess,
   receiveAnswerFail,
+  userAddedQuestionFail,
+  userAddedQuestionSuccess,
 } from "./UserActions";
 import {
   receiveQuestionsSuccess,
   receiveQuestionsFail,
   receiveVoteSuccesss,
   receiveVoteFail,
+  addQuestionFail,
+  addQuestionSuccess,
 } from "./QuestionActions";
 import { setIsNotLoading } from "./WidgetsActions";
 import {
   getInitialQuestions,
   getInitialUsers,
   saveQuestionAnswer,
+  saveQuestion,
 } from "../../Utils/api";
 import { unauth } from "./AuthedUserActions";
 
@@ -72,6 +77,26 @@ export function handleQuestionAnswered(userId, questionId, answer) {
       .catch((err) => {
         dispatch(receiveVoteFail());
         dispatch(receiveAnswerFail());
+      });
+  };
+}
+
+export function handleAddQuestion(userId, answerOne, answerTwo) {
+  return (dispatch) => {
+    saveQuestion(answerOne, answerTwo, userId)
+      .then((question) => {
+        if (question) {
+          dispatch(addQuestionSuccess(question));
+          dispatch(userAddedQuestionSuccess(userId, question.id));
+        } else {
+          dispatch(addQuestionFail());
+          dispatch(userAddedQuestionFail());
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(addQuestionFail());
+        dispatch(userAddedQuestionFail());
       });
   };
 }

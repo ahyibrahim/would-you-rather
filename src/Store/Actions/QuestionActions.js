@@ -4,6 +4,8 @@ import {
   CLEAN_QUESTIONS,
   RECEIVE_VOTE_SUCCESS,
   RECEIVE_VOTE_FAIL,
+  ADD_QUESTION_SUCCESS,
+  ADD_QUESTION_FAIL,
 } from "./ActionTypes";
 
 export function receiveQuestionsSuccess(questions) {
@@ -33,5 +35,18 @@ export function receiveVoteSuccesss(userId, questionId, answer) {
 export function receiveVoteFail() {
   return {
     type: RECEIVE_VOTE_FAIL,
+  };
+}
+
+export function addQuestionSuccess(question) {
+  return {
+    type: ADD_QUESTION_SUCCESS,
+    payload: question,
+  };
+}
+
+export function addQuestionFail() {
+  return {
+    type: ADD_QUESTION_FAIL,
   };
 }

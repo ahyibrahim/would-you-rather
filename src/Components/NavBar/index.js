@@ -26,12 +26,16 @@ function NavBar(props) {
           <img className="logo" alt="logo" src={logo} />
         </Col>
         <Col span={16}>
-          <Menu theme="dark" mode="horizontal">
+          <Menu theme="dark" mode="horizontal" selectable={false}>
             <Link to="/">
               <Menu.Item key="home">Home</Menu.Item>
             </Link>
-            <Menu.Item key="add">New Question</Menu.Item>
-            <Menu.Item key="boards">Leader Boards</Menu.Item>
+            <Link to="/add">
+              <Menu.Item key="add">New Question</Menu.Item>
+            </Link>
+            <Link to="leaderboard">
+              <Menu.Item key="boards">Leader Boards</Menu.Item>
+            </Link>
           </Menu>
         </Col>
         <Col span={6}>
