@@ -18,10 +18,10 @@ function HomePage(props) {
           <Breadcrumb.Item>Questions</Breadcrumb.Item>
         </Breadcrumb>
         <Row justify="center" className="site-layout-content">
-          <Col span={14} className="tabs-container">
+          <Col span={15} className="tabs-container">
             <Tabs centered>
               <TabPane tab="Unanswered Questions" key="1">
-                <Row justify="center">
+                <Row justify="space-around">
                   <Col>
                     <div className="card-list-container">
                       <ListOfQuestions questionList={remainingQuestions} />

@@ -4,6 +4,7 @@ import Question_View from "../Views/QuestionView";
 import HomePage from "../Views/HomePage";
 import PageNotFound from "../Views/PageNotFound";
 import AddQuestionView from "../Views/AddQuestionView";
+import LeaderboardView from "../Views/LeaderBoardView";
 
 function ProtectedRoutes() {
   return (
@@ -12,6 +13,7 @@ function ProtectedRoutes() {
       <Route exact path="/" component={HomePage} />
       <Route exact path="/login" render={() => <Redirect to="/" />} />
       <Route exact path="/add" component={AddQuestionView} />
+      <Route exact path="/leaderboard" component={LeaderboardView} />
       <Route path="/404" component={PageNotFound} />
       <Route path="*">
         <PageNotFound />

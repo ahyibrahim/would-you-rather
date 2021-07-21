@@ -26,7 +26,7 @@ function Question(props) {
                   />
                 </Row>
               </Col>
-              <Divider type="vertical" />
+              <Divider type="vertical" style={{ height: "15vh" }} />
               <Col span={18}>
                 <Row>
                   <Col>

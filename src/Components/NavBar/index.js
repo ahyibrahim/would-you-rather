@@ -21,11 +21,11 @@ function NavBar(props) {
   }, []);
   return (
     <Header className="header">
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify="space-between">
         <Col span={2}>
           <img className="logo" alt="logo" src={logo} />
         </Col>
-        <Col span={16}>
+        <Col span={13}>
           <Menu theme="dark" mode="horizontal" selectable={false}>
             <Link to="/">
               <Menu.Item key="home">Home</Menu.Item>
@@ -33,7 +33,7 @@ function NavBar(props) {
             <Link to="/add">
               <Menu.Item key="add">New Question</Menu.Item>
             </Link>
-            <Link to="leaderboard">
+            <Link to="/leaderboard">
               <Menu.Item key="boards">Leader Boards</Menu.Item>
             </Link>
           </Menu>
