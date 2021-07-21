@@ -63,6 +63,9 @@ export function handleInitQuestions() {
       .catch((err) => {
         console.log(err);
         dispatch(receiveQuestionsFail());
+      })
+      .finally(() => {
+        dispatch(setIsNotLoading());
       });
   };
 }
@@ -81,7 +84,7 @@ export function handleQuestionAnswered(userId, questionId, answer) {
   };
 }
 
-export function handleAddQuestion(userId, answerOne, answerTwo) {
+export function handleAddQuestion(userId, answerOne, answerTwo, onSuccess) {
   return (dispatch) => {
     saveQuestion(answerOne, answerTwo, userId)
       .then((question) => {
@@ -93,6 +96,7 @@ export function handleAddQuestion(userId, answerOne, answerTwo) {
           dispatch(userAddedQuestionFail());
         }
       })
+      .then(onSuccess)
       .catch((err) => {
         console.log(err);
         dispatch(addQuestionFail());

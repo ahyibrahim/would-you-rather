@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../../Store/Actions/SharedActions";
 import { Row, Col, Form, Card, Input, Button, Typography, Divider } from "antd";
@@ -7,12 +8,20 @@ const { Text, Title } = Typography;
 
 function AddQuestionView(props) {
   const { dispatch, authedUser } = props;
+  const history = useHistory();
 
   const onFinish = (values) => {
     if (values) {
       console.log("Success:", JSON.stringify(values));
       dispatch(
-        handleAddQuestion(authedUser, values.optionOne, values.optionTwo)
+        handleAddQuestion(
+          authedUser,
+          values.optionOne,
+          values.optionTwo,
+          () => {
+            history.push("/");
+          }
+        )
       );
     } else {
       console.log("Fail");

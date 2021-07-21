@@ -36,7 +36,7 @@ export const questionReducer = (state = initialSate, action) => {
       console.log(`QR_QR_QR: payload: ${JSON.stringify(action.payload)}`);
       return {
         ...state,
-        [action.payload.id]: action.payload.question,
+        [action.payload.id]: action.payload,
       };
 
     default: {
