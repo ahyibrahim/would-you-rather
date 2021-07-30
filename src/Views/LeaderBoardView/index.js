@@ -1,11 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Layout, Breadcrumb, Row, Col, Typography } from "antd";
+import { Layout, Breadcrumb, Row, Col } from "antd";
 import ListOfUsers from "../../Components/ListOfUsers";
 import "./leaderboard.css";
 
 const { Content, Footer } = Layout;
-const { Title } = Typography;
 
 function LeaderboardView(props) {
   const { users } = props;

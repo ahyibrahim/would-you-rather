@@ -54,9 +54,9 @@ function mapStateToProps({ authedUserReducer, userReducer, questionReducer }) {
     const authedUser = Object.values(userReducer).filter(
       (user) => user.id === authedUserReducer.authedUserId
     )[0];
-    //console.log(`Authed User in Home: ${JSON.stringify(authedUser)}`);
+
     const userQuestionIds = Object.keys(authedUser.answers);
-    const answeredQuestions = [];
+    let answeredQuestions = [];
     let remainingQuestions = Object.values(questionReducer);
 
     for (const userQuestionId of userQuestionIds) {
@@ -66,14 +66,6 @@ function mapStateToProps({ authedUserReducer, userReducer, questionReducer }) {
       );
     }
 
-    // console.log(
-    //   `Number of Questions: ${Object.keys(questionReducer).length}\n\n
-    //   ${remainingQuestions.length}Questions Remainging: ${JSON.stringify(
-    //     remainingQuestions
-    //   )} , \n\n${answeredQuestions.length}AnsweredQuestuins: ${JSON.stringify(
-    //     answeredQuestions
-    //   )}`
-    // );
     return { answeredQuestions, remainingQuestions };
   }
 }

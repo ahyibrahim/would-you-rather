@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DisconnectOutlined } from "@ant-design/icons";
+import { connect } from "react-redux";
 import { Layout, Row, Col, Typography, Space } from "antd";
+import { unauth } from "../../Store/Actions/AuthedUserActions";
 
 const { Content } = Layout;
 const { Title } = Typography;
 
-function PageNotFound({ location }) {
+function PageNotFound({ dispatch, location }) {
+  useEffect(() => {
+    dispatch(unauth());
+  }, []);
+
   return (
     <Layout>
       <Content style={{ padding: "0 50px", height: "100vh" }}>
@@ -33,4 +39,4 @@ function PageNotFound({ location }) {
   );
 }
 
-export default PageNotFound;
+export default connect()(PageNotFound);

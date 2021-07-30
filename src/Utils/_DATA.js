@@ -49,7 +49,7 @@ let questions = {
     },
   },
   "6ni6ok3ym7mf1p33lnez": {
-    id: "6ni6ok3ym7mf1p33lnez",
+    id: " ",
     author: "janedoe",
     timestamp: 1468479767190,
     optionOne: {

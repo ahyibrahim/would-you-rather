@@ -12,6 +12,7 @@ const { Text } = Typography;
 function NavBar(props) {
   const history = useHistory();
   const { dispatch } = props;
+
   const logout = useCallback(() => {
     dispatch(
       handleLogout(() => {
@@ -19,6 +20,13 @@ function NavBar(props) {
       })
     );
   }, []);
+
+  const reroute = (e) => {
+    if (e.key === "home") history.replace("/");
+    if (e.key === "add") history.replace("/add");
+    if (e.key === "boards") history.replace("/leaderboard");
+  };
+
   return (
     <Header className="header">
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify="space-between">
@@ -27,15 +35,15 @@ function NavBar(props) {
         </Col>
         <Col span={13}>
           <Menu theme="dark" mode="horizontal" selectable={false}>
-            <Link to="/">
-              <Menu.Item key="home">Home</Menu.Item>
-            </Link>
-            <Link to="/add">
-              <Menu.Item key="add">New Question</Menu.Item>
-            </Link>
-            <Link to="/leaderboard">
-              <Menu.Item key="boards">Leader Boards</Menu.Item>
-            </Link>
+            <Menu.Item key="home" onClick={reroute}>
+              Home
+            </Menu.Item>
+            <Menu.Item key="add" onClick={reroute}>
+              New Question
+            </Menu.Item>
+            <Menu.Item key="boards" onClick={reroute}>
+              Leader Boards
+            </Menu.Item>
           </Menu>
         </Col>
         <Col span={6}>

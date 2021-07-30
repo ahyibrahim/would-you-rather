@@ -23,3 +23,5 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(persistedReducer, middleware);
 export const persistor = persistStore(store);
+
+//export const store = createStore(rootReducer, middleware);

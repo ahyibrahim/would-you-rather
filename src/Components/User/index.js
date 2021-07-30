@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, Row, Col, Avatar, Typography, Divider, Space } from "antd";
-import logo from "../../logo.svg";
+import { Card, Row, Col, Avatar, Typography, Divider } from "antd";
 import "./user.css";
 
 function User(props) {

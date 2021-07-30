@@ -10,10 +10,10 @@ const initialSate = {};
 export const questionReducer = (state = initialSate, action) => {
   switch (action.type) {
     case RECEIVE_QUESTIONS_SUCCESS:
-      return {
+      return sortStateByTimestamp({
         ...state,
         ...action.payload,
-      };
+      });
 
     case CLEAN_QUESTIONS:
       return initialSate;
@@ -34,13 +34,27 @@ export const questionReducer = (state = initialSate, action) => {
 
     case ADD_QUESTION_SUCCESS:
       console.log(`QR_QR_QR: payload: ${JSON.stringify(action.payload)}`);
-      return {
+      return sortStateByTimestamp({
         ...state,
         [action.payload.id]: action.payload,
-      };
+      });
 
     default: {
       return state;
     }
   }
+};
+
+const sortStateByTimestamp = (questions) => {
+  let sortedQuestions = Object.values(questions).sort(function (b, a) {
+    return a.timestamp - b.timestamp;
+  });
+
+  const sortedQuestionObj = {};
+  sortedQuestions.map((question) => {
+    sortedQuestionObj[question.id] = question;
+    return 0;
+  });
+
+  return sortedQuestionObj;
 };
