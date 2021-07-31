@@ -5,6 +5,7 @@ import {
   RECEIVE_ANSWER_FAIL,
   USER_ADDED_QUESTION_SUCESS,
   USER_ADDED_QUESTION_FAIL,
+  CLEAR_USERS,
 } from "./ActionTypes";
 
 export function receiveUsersSuccess(users) {
@@ -43,5 +44,11 @@ export function userAddedQuestionSuccess(userId, questionId) {
 export function userAddedQuestionFail() {
   return {
     type: USER_ADDED_QUESTION_FAIL,
+  };
+}
+
+export function clearUsers() {
+  return {
+    type: CLEAR_USERS,
   };
 }

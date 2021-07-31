@@ -4,7 +4,7 @@ import Question from "../Question";
 
 function ListOfQuestions(props) {
   const { questionList } = props;
-
+  console.log(`questionList: ${JSON.stringify(questionList)}`);
   return (
     <div>
       {questionList.map((question) => (

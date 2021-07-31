@@ -1,10 +1,11 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Layout, Menu, Row, Col, Avatar, Typography, Space } from "antd";
 import logo from "./logo.svg";
 import "./NavBar.css";
 import { handleLogout } from "../../Store/Actions/SharedActions";
+import { unauth } from "../../Store/Actions/AuthedUserActions";
 
 const { Header } = Layout;
 const { Text } = Typography;

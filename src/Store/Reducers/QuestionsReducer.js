@@ -45,7 +45,7 @@ export const questionReducer = (state = initialSate, action) => {
   }
 };
 
-const sortStateByTimestamp = (questions) => {
+export const sortStateByTimestamp = (questions) => {
   let sortedQuestions = Object.values(questions).sort(function (b, a) {
     return a.timestamp - b.timestamp;
   });

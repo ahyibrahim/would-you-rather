@@ -1,4 +1,5 @@
 import {
+  CLEAR_USERS,
   RECEIVE_ANSWER_SUCCESS,
   RECEIVE_USERS_SUCCESS,
   USER_ADDED_QUESTION_SUCESS,
@@ -8,6 +9,8 @@ const initialSate = {};
 
 export const userReducer = (state = initialSate, action) => {
   switch (action.type) {
+    case CLEAR_USERS:
+      return initialSate;
     case RECEIVE_USERS_SUCCESS:
       return {
         ...state,

@@ -49,7 +49,7 @@ let questions = {
     },
   },
   "6ni6ok3ym7mf1p33lnez": {
-    id: " ",
+    id: "6ni6ok3ym7mf1p33lnez",
     author: "janedoe",
     timestamp: 1468479767190,
     optionOne: {
@@ -124,7 +124,7 @@ function generateUID() {
 
 export function _getUsers() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...users }), 30000);
+    setTimeout(() => res({ ...users }), 1000);
   });
 }
 
@@ -175,6 +175,7 @@ export function _saveQuestion(question) {
 }
 
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
+  console.log(`answer: ${answer}\n\nQid: ${qid}\n\nAuthed User: ${authedUser}`);
   return new Promise((res, rej) => {
     setTimeout(() => {
       users = {
@@ -187,7 +188,7 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
           },
         },
       };
-
+      console.log(`\n\nQuestions: ${JSON.stringify(questions)}`);
       questions = {
         ...questions,
         [qid]: {

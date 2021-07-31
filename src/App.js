@@ -8,14 +8,19 @@ import {
 } from "./Store/Actions/SharedActions";
 import LoginView from "./Views/LoginView";
 import { cleanQuestions } from "./Store/Actions/QuestionActions";
+import { clearUsers } from "./Store/Actions/UserActions";
 import { setIsLoading, setIsNotLoading } from "./Store/Actions/WidgetsActions";
 import NavBar from "./Components/NavBar";
 import ProtectedRoutes from "./Routes/ProtectedRoutes";
+import { unauth } from "./Store/Actions/AuthedUserActions";
 
 function App(props) {
   const { isAuthed, dispatch, questionReducer, userReducer } = props;
 
   useEffect(() => {
+    // dispatch(unauth());
+    // dispatch(cleanQuestions());
+    // dispatch(clearUsers());
     if (!Object.values(userReducer).length) {
       dispatch(setIsLoading());
       dispatch(handleInitUsers());
@@ -52,7 +57,7 @@ function App(props) {
 }
 
 function mapStateToProps({ authedUserReducer, questionReducer, userReducer }) {
-  //console.log(`AuthedUser in App: ${JSON.stringify(authedUserReducer)}`);
+  console.log(`AuthedUser in App: ${JSON.stringify(authedUserReducer)}`);
   return {
     ...authedUserReducer,
     questionReducer,

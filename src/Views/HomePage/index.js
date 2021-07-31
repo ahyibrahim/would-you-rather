@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Layout, Breadcrumb, Tabs, Row, Col } from "antd";
 import "./HomePage.css";
@@ -9,6 +9,13 @@ const { TabPane } = Tabs;
 
 function HomePage(props) {
   const { answeredQuestions, remainingQuestions } = props;
+  const [sortedAnsweredQuestions, setSortedAnsweredQuestions] = useState([]);
+
+  useEffect(() => {
+    setSortedAnsweredQuestions(
+      answeredQuestions.sort((a, b) => a.timestamp - b.timestamp)
+    );
+  }, [answeredQuestions]);
 
   return (
     <Layout>
@@ -33,7 +40,7 @@ function HomePage(props) {
                 <Row justify="center">
                   <Col>
                     <div className="card-list-container">
-                      <ListOfQuestions questionList={answeredQuestions} />
+                      <ListOfQuestions questionList={sortedAnsweredQuestions} />
                     </div>
                   </Col>
                 </Row>
@@ -66,6 +73,9 @@ function mapStateToProps({ authedUserReducer, userReducer, questionReducer }) {
       );
     }
 
+    answeredQuestions = answeredQuestions.sort(
+      (a, b) => a.timestamp - b.timestamp
+    );
     return { answeredQuestions, remainingQuestions };
   }
 }

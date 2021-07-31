@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row } from "antd";
 import User from "../User";
 
 function ListOfUsers(props) {
   const { usersList } = props;
-  console.log(`LU_LU_LU: List of Users: ${JSON.stringify(usersList)}`);
+  const [sortedUsersList, setSortedUsersList] = useState([]);
+
+  useEffect(() => {
+    const sortedArray = Object.values(usersList).sort((a, b) => {
+      const { answers: aAnswers, questions: aQuestions } = a;
+      const { answers: bAnswers, questions: bQuestions } = b;
+      const [aVal, bVal] = [
+        Object.keys(aAnswers).length + aQuestions.length,
+        Object.keys(bAnswers).length + bQuestions.length,
+      ];
+      return bVal - aVal;
+    });
+    setSortedUsersList(sortedArray);
+  }, [usersList]);
+
   return (
     <div
       className="card-list-container"
       style={{ display: "flex", flexDirection: "column" }}
     >
-      {Object.values(usersList).map((user) => (
+      {sortedUsersList.map((user) => (
         <Row key={user.id}>
           <User
             userName={user.name}
