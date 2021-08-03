@@ -1,4 +1,4 @@
-import { SET_AUTHED_USER, UNAUTH } from "./ActionTypes";
+import { UNAUTH_TO, SET_AUTHED_USER, UNAUTH } from "./ActionTypes";
 
 export function setAuthedUser(userID = undefined) {
   return {
@@ -10,5 +10,12 @@ export function setAuthedUser(userID = undefined) {
 export function unauth() {
   return {
     type: UNAUTH,
+  };
+}
+
+export function unauthTo(to) {
+  return {
+    type: UNAUTH_TO,
+    payload: to,
   };
 }

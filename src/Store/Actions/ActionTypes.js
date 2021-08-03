@@ -19,6 +19,7 @@ export const ADD_QUESTION_FAIL = "ADD_QUESTION_FAIL";
 // Auth Action Types
 export const SET_AUTHED_USER = "SET_AUTHED_USER";
 export const UNAUTH = "UNAUTH";
+export const UNAUTH_TO = "UNAUTH_TO";
 
 // Widgets Action Types
 export const SET_IS_LOADING = "SET_IS_LOADING";

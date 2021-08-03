@@ -20,7 +20,6 @@ export const questionReducer = (state = initialSate, action) => {
 
     case RECEIVE_VOTE_SUCCESS:
       return {
-        ...state,
         [action.payload.questionId]: {
           ...state[action.payload.questionId],
           [action.payload.answer]: {
@@ -30,6 +29,7 @@ export const questionReducer = (state = initialSate, action) => {
             ].votes.concat([action.payload.userId]),
           },
         },
+        ...state,
       };
 
     case ADD_QUESTION_SUCCESS:

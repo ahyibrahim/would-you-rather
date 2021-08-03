@@ -9,10 +9,10 @@ const { Option } = Select;
 
 function LoginView(props) {
   const { users } = props;
+  const { dispatch } = props;
 
   function handleChange(value) {
     console.log(`selected ${value}`);
-    const { dispatch } = props;
     dispatch(setAuthedUser(value));
   }
 

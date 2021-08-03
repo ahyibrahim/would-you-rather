@@ -1,18 +1,15 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
+import { Switch, BrowserRouter } from "react-router-dom";
 import {
   handleInitQuestions,
   handleInitUsers,
 } from "./Store/Actions/SharedActions";
-import LoginView from "./Views/LoginView";
 import { cleanQuestions } from "./Store/Actions/QuestionActions";
-import { clearUsers } from "./Store/Actions/UserActions";
 import { setIsLoading, setIsNotLoading } from "./Store/Actions/WidgetsActions";
 import NavBar from "./Components/NavBar";
-import ProtectedRoutes from "./Routes/ProtectedRoutes";
-import { unauth } from "./Store/Actions/AuthedUserActions";
+import Routes from "./Routes";
 
 function App(props) {
   const { isAuthed, dispatch, questionReducer, userReducer } = props;
@@ -43,14 +40,7 @@ function App(props) {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        {props.isAuthed ? (
-          <ProtectedRoutes />
-        ) : (
-          <>
-            <Route path="/login" component={LoginView} />
-            <Redirect to="/login"></Redirect>
-          </>
-        )}
+        <Routes />
       </Switch>
     </BrowserRouter>
   );

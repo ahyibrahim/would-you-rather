@@ -73,9 +73,6 @@ function mapStateToProps({ authedUserReducer, userReducer, questionReducer }) {
       );
     }
 
-    answeredQuestions = answeredQuestions.sort(
-      (a, b) => a.timestamp - b.timestamp
-    );
     return { answeredQuestions, remainingQuestions };
   }
 }

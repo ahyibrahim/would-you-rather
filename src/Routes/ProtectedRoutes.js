@@ -6,7 +6,8 @@ import PageNotFound from "../Views/PageNotFound";
 import AddQuestionView from "../Views/AddQuestionView";
 import LeaderboardView from "../Views/LeaderBoardView";
 
-function ProtectedRoutes() {
+function ProtectedRoutes(props) {
+  const { redirr, from } = props;
   return (
     <Switch>
       <Route path="/question/:id" component={Question_View} />
@@ -16,7 +17,7 @@ function ProtectedRoutes() {
       <Route exact path="/leaderboard" component={LeaderboardView} />
       <Route path="/404" component={PageNotFound} />
       <Route path="*">
-        <PageNotFound />
+        {redirr ? <Redirect to={from} /> : <PageNotFound />}
       </Route>
     </Switch>
   );
